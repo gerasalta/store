@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+//general
+$primary: #33CC99;
+$body-bg: rgb(238, 238, 238);
+
+//buttons
+$btn-border-radius: 0;
+$btn-border-width:  0;
+
+//cards
+$card-border-radius:0;
+
+//input
+$input-bg:white;
+$input-disabled-bg:white;
+$input-border-color:white;
+$input-box-shadow:none;
+$input-focus-box-shadow:none;
+$input-border-radius:none;
+$input-focus-border-color:none;
+
+//paginator
+$pagination-border-radius: none;
+$pagination-color: dark;
+$pagination-border-width: 0;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+

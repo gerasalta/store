@@ -1,0 +1,14 @@
+<nav class="navbar navbar-dark bg-primary p-1">
+  <div class="container-fluid d-flex justify-content-between">
+    <span class="text-white fw-semibold fs-5">EN CONTRUCCION</span>
+    <button class="border border-primary bg-primary" (click)="openMenu()" data-bs-target="#menu"><i class="fa-solid fa-bars text-white fs-4 p-2"></i></button>
+  </div>
+</nav>
+<div *ngIf="showMenu" class="menu pt-5">
+  <div class="d-flex flex-column align-items-center">
+    <button class="close mt-3 mx-4 text-white" (click)="openMenu()"><i class="fa-solid fa-xmark"></i></button>
+    <div class="btn">Favoritos</div>
+    <hr class="w-50">
+    <div class="btn">Administrar Tienda</div>
+  </div>
+</div>
