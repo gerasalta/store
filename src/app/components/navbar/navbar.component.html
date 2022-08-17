@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark bg-primary p-1">
   <div class="container-fluid d-flex justify-content-between">
-    <span class="text-white fw-semibold fs-5">EN CONTRUCCION</span>
+    <button class=" btn fs-5 btn-home bg-primary border-primary text-white" routerLink="home" >APP UNDER CONSTRUCTION <i class="fa-solid fa-person-digging fs-3 mx-1"></i></button>
     <button class="border border-primary bg-primary" (click)="openMenu()" data-bs-target="#menu"><i class="fa-solid fa-bars text-white fs-4 p-2"></i></button>
   </div>
 </nav>
@@ -9,6 +9,6 @@
     <button class="close mt-3 mx-4 text-white" (click)="openMenu()"><i class="fa-solid fa-xmark"></i></button>
     <div class="btn">Favoritos</div>
     <hr class="w-50">
-    <div class="btn">Administrar Tienda</div>
+    <button class="btn" (click)="openMenu()" routerLink="admin">Administrar Tienda</button>
   </div>
 </div>
