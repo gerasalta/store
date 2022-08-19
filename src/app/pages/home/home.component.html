@@ -22,7 +22,7 @@
             <option value="2">Mas Popular</option>
           </select>
         </div>
-        <!-- List -->
+        <!-- List for Mobile -->
         <div class="col-lg-12 m-1 p-0">
           <select class="form-select shadow-sm mobile-show" aria-label="Default select example">
             <option selected>Categorias</option>
@@ -32,17 +32,15 @@
             <option value="4">Fila</option>
             <option value="5">Converse</option>
             <option value="6">Topper</option>
-            <option value="7">Topper</option>Puma
+            <option value="7">Puma</option>
           </select>
         </div>
       </div>
       <!-- cards -->
       <div class="row d-flex justify-content-center">
         <div class="custom-card p-0" *ngFor="let item of arr">
-          <button class="card-link bg-white">
-            <img
-              src="https://media.voguebusiness.com/photos/61fd0c44fd855c197a6d5e53/master/pass/nike-voguebus-Edward-Berthelot_Getty-Images-feb-21-story.jpg"
-              class="cover" alt="...">
+          <button routerLink="/item" class="card-link bg-white">
+            <img src="https://media.voguebusiness.com/photos/61fd0c44fd855c197a6d5e53/master/pass/nike-voguebus-Edward-Berthelot_Getty-Images-feb-21-story.jpg" class="cover" alt="...">
             <div class="mt-1 text-center">
               <p class="fs-5 name">Air Jordan</p>
               <p class="fs-5 price">$3000</p>
