@@ -6,13 +6,15 @@ import { AdminComponent } from './admin/admin.component';
 import { ItemComponent } from './item/item.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { CreateItemComponent } from './create-item/create-item.component';
+import { EditItemComponent } from './edit-item/edit-item.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     AdminComponent,
     ItemComponent,
-    CreateItemComponent
+    CreateItemComponent,
+    EditItemComponent
   ],
   imports: [
     CommonModule,
