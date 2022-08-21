@@ -1,10 +1,10 @@
-.container-fluid{
+.container{
     padding-top: 5rem;
 }
 
 .banner{
     width: 100%;
-    height: 32rem;
+    height: 30rem;
     object-fit: cover;
 }
 
@@ -17,7 +17,13 @@
 }
 
 .price{
-    margin-right: 1rem;
+    margin-right: 0.5rem;
+}
+
+.spinner{
+    height: 1rem;
+    width: 1rem;
+    font-size: 0.5rem;
 }
 
 @media (max-width: 992px) {
@@ -29,7 +35,11 @@
     }
     .banner{
         width: 100%;
-        height: 25rem;
+        height: 24rem;
         object-fit: cover;
+    }
+    .item{
+        display: flex;
+        flex-direction: column;
     }
   }

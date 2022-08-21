@@ -9,12 +9,16 @@ import { DatabaseService } from 'src/app/services/database.service';
 })
 export class CreateItemComponent implements OnInit {
 
+  errors: any = {}
+  spinner: boolean = false;
+
   newItem = new FormGroup({
-    title: new FormControl('', [Validators.required]),
-    price: new FormControl('', [Validators.required]),
+    image: new FormControl('', [Validators.required]),
+    title: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    price: new FormControl('', [Validators.required, Validators.min(1)]),
     stock: new FormControl('', [Validators.required]),
     category: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required, Validators.minLength(20)])
+    description: new FormControl('', [])
   })
 
   constructor(private db: DatabaseService) { }
@@ -23,10 +27,16 @@ export class CreateItemComponent implements OnInit {
   }
 
   creatItem(){
+    this.spinner = true
     this.db.postData(this.newItem.value)
-    .subscribe(data =>console.log(data)
-    )
-    this.newItem.reset()
+    .subscribe({
+      next: data => {},
+      error: err => this.errors = err,
+      complete: () => {
+        this.newItem.reset(),
+        this.spinner = false
+      }
+    })
   }
 
 } 
