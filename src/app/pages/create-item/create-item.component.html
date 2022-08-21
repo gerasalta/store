@@ -4,20 +4,23 @@
             <div class="row">
                 <img class="banner p-0" src="https://icons-for-free.com/iconfiles/png/512/cloud+upload+file+storage+upload+icon-1320190558968694328.png" alt="">
             </div>
-            <div class="row my-1 bg-white p-3 flex-column justify-content-center">
+            <!-- form group  -->
+            <div class="row my-1 bg-white p-3 flex-column justify-content-center" [formGroup]="newItem">
                 <input class="form-control my-1 border shadow-sm" type="file" id="formFile">
-                <input type="text" class="form-control border shadow-sm my-1" placeholder="Titulo">
-                <div class="div d-flex p-0">
-                    <input type="text" class="form-control border shadow-sm my-1" placeholder="Precio">
-                    <input type="text" class="form-control border shadow-sm my-1" placeholder="Stock">
-                </div>
-                <select class="form-select border shadow-sm my-1" aria-label="Default select example">
+                <select class="form-select border shadow-sm my-1" aria-label="Default select example" formControlName="category">
                     <option selected>Categoria</option>
                     <option value="1">Nike</option>
                     <option value="2">Adidas</option>
                     <option value="3">Puma</option>
                 </select>
-                <textarea class="form-control border shadow-sm my-1" placeholder="Descripción" rows="3"></textarea>
+                <input type="text" class="form-control border shadow-sm my-1" placeholder="Titulo" formControlName="title">
+                <div class="div d-flex p-0">
+                    <input type="text" class="form-control border shadow-sm my-1 price" placeholder="Precio" formControlName="price">
+                    <input type="text" class="form-control border shadow-sm my-1" placeholder="Stock" formControlName="stock">
+                </div>
+                <textarea class="form-control border shadow-sm my-1" placeholder="Descripción" rows="3" formControlName="description"></textarea>
+            <!-- submit  -->    
+                <button class="btn border shadow bg-primary text-white" type="submit" [disabled]="!newItem.valid" (click)="creatItem()">Confirmar</button>
             </div>
         </div>
     </div>  
