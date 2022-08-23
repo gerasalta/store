@@ -3,24 +3,27 @@
     <div class="col-2 bg-white p-2 shadow mobile-hidden side-left">
         <div class="btn-group flex-column w-100" role="group" aria-label="Basic example">
             <div type="button p-0" class="btn btn-primary text-white my-1" routerLink="/create-item">Crear Item</div>
-            <div type="button p-0" class="btn btn-primary text-white my-1" data-bs-toggle="modal" data-bs-target="#createCatogry">Crear Categoria</div>
-             <!-- Edit Category Name Modal -->
-             <div class="modal fade" id="createCatogry" tabindex="-1" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-             <div class="modal-dialog modal-dialog-centered">
-                 <div class="modal-content">
-                     <div class="modal-header bg-primary d-flex justify-content-center">
-                        <i class="fa-solid fa-folder-plus fs-1 text-white"></i>
-                     </div>
-                     <div class="modal-body text-center">
-                         <input class="form-control border shadow-sm" type="text" placeholder="Nueva Categoria">
-                     </div>
-                     <div class="modal-footer text-center d-flex justify-content-center">
-                         <button type="button" class="btn btn-primary text-white" data-bs-dismiss="modal">Confirmar</button>
-                     </div>
-                 </div>
-             </div>
-         </div>
+            <div type="button p-0" class="btn btn-primary text-white my-1" data-bs-toggle="modal"
+                data-bs-target="#createCatogry">Crear Categoria</div>
+            <!--Create Category / Modal -->
+            <div class="modal fade" id="createCatogry" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary d-flex justify-content-center">
+                            <i class="fa-solid fa-folder-plus fs-1 text-white"></i>
+                        </div>
+                        <div class="modal-body text-center">
+                            <input class="form-control border shadow-sm" type="text" placeholder="Nueva Categoria"
+                                [formControl]="newCategory">
+                        </div>
+                        <div class="modal-footer text-center d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary text-white" data-bs-dismiss="modal"
+                                (click)="createCategory()">Confirmar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row d-flex justify-content-center">
@@ -36,13 +39,7 @@
                         <div class="col-lg-2 m-1">
                             <select class="form-select shadow-sm" aria-label="Default select example">
                                 <option selected>Categorias</option>
-                                <option value="1">Todos</option>
-                                <option value="2">Nike</option>
-                                <option value="3">Adidas</option>
-                                <option value="4">Fila</option>
-                                <option value="5">Converse</option>
-                                <option value="6">Topper</option>
-                                <option value="7">Topper</option>Puma
+                                <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
                             </select>
                         </div>
                     </div>
@@ -60,14 +57,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of arr; let i = index">
-                                <td class="td">Nike</td>
-                                <td class="td">Air Jordan</td>
-                                <td class="mobile-hidden td">$3000</td>
-                                <td class="mobile-hidden td">35</td>
+                            <tr *ngFor="let item of items; let i = index">
+                                <td class="td">{{item.category}}</td>
+                                <td class="td">{{item.title}}</td>
+                                <td class="mobile-hidden td">{{item.price}}</td>
+                                <td class="mobile-hidden td">{{item.stock}}</td>
                                 <td>
-                                    <button class="btn edit-icon td" routerLink="/edit-item" ><i class="fa-solid fa-pen"></i></button>
-                                    <button class="btn delete-icon td" data-bs-toggle="modal" data-bs-target="#deleteItem"><i class="fa-solid fa-trash-can"></i></button>
+                                    <button class="btn edit-icon td" routerLink="/edit-item"><i
+                                            class="fa-solid fa-pen"></i></button>
+                                    <button class="btn delete-icon td" data-bs-toggle="modal"
+                                        data-bs-target="#deleteItem"><i class="fa-solid fa-trash-can"></i></button>
                                 </td>
                             </tr>
                             <!-- Delete Item Modal -->
@@ -102,52 +101,50 @@
                 </nav>
             </div>
         </div>
-        <!-- Righ Side List -->
+        <!-- Right Side List -->
         <div class="col-2 bg-white p-0 shadow mobile-hidden side-right">
             <div class="flex-column w-100" role="group" aria-label="Basic example">
-                <div class="p-0" class="btn btn-white d-flex justify-content-between">
-                    <!-- Delete Category Modal -->
-                    <div class="modal fade" id="deleteCategory" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header bg-danger d-flex justify-content-center">
-                                    <i class="fa-solid fa-triangle-exclamation fs-1 text-white"></i>
-                                </div>
-                                <div class="modal-body text-center">
-                                    <p class="m-0">La categoria "Nike" se borrará permanentemente</p>
-                                    <h3>¿Estas Seguro?</h3>
-                                </div>
-                                <div class="modal-footer text-center d-flex justify-content-center">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Confirmar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Edit Category Name Modal -->
-                    <div class="modal fade" id="editCategory" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header bg-warning d-flex justify-content-center">
-                                    <i class="fa-solid fa-circle-exclamation text-white fs-1"></i>
-                                </div>
-                                <div class="modal-body text-center">
-                                    <p class="mb-2">La categoria "Nike" será reemplazada por</p>
-                                    <input class="form-control border shadow-sm" type="text" placeholder="Nuevo Nombre">
-                                </div>
-                                <div class="modal-footer text-center d-flex justify-content-center">
-                                    <button type="button" class="btn btn-warning text-white" data-bs-dismiss="modal">Confirmar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="p-1">Nike</span>
+                <div class="p-0" class="btn btn-white d-flex justify-content-between" *ngFor="let category of categories; let i = index">
+                    <span class="p-1">{{category.name}}</span>
                     <div>
                         <button class="btn edit-icon" data-bs-toggle="modal" data-bs-target="#editCategory"><i class="fa-solid fa-pen"></i></button>
-                        <button class="btn delete-icon" data-bs-toggle="modal" data-bs-target="#deleteCategory"><i class="fa-solid fa-trash-can"></i></button>
+                        <button class="btn delete-icon" data-bs-toggle="modal" data-bs-target="#delete" (click)="getIndex(i)"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete Category Modal -->
+<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger d-flex justify-content-center">
+                <i class="fa-solid fa-triangle-exclamation fs-1 text-white"></i>
+            </div>
+            <div class="modal-body text-center">
+                <p class="m-0">La categoria "{{categories[deleteIndex].name}}" se borrará permanentemente</p>
+                <h3>¿Estas Seguro?</h3>
+            </div>
+            <div class="modal-footer text-center d-flex justify-content-center">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteCategory()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Category Name Modal -->
+<div class="modal fade" id="editCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-warning d-flex justify-content-center">
+                <i class="fa-solid fa-circle-exclamation text-white fs-1"></i>
+            </div>
+            <div class="modal-body text-center">
+                <p class="mb-2">La categoria "Nike" será reemplazada por</p>
+                <input class="form-control border shadow-sm" type="text" placeholder="Nuevo Nombre">
+            </div>
+            <div class="modal-footer text-center d-flex justify-content-center">
+                <button type="button" class="btn btn-warning text-white" data-bs-dismiss="modal">Confirmar</button>
             </div>
         </div>
     </div>

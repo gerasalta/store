@@ -9,9 +9,8 @@
             <div class="p-0 d-flex">
                 <input type="text" class="form-control my-1 border shadow-sm" placeholder="Url de la imagen"
                     formControlName="image">
-                <label for="file" class="btn btn-primary text-white p-2 my-1 shadow-sm"><i
-                        class="fa-solid fa-folder-open"></i></label>
-                <input class="form-control my-1 border shadow-sm d-none" id="file" type="file" formControlName="image">
+                <!-- <label for="file" class="btn btn-primary text-white p-2 my-1 shadow-sm"><i class="fa-solid fa-folder-open"></i></label>
+                <input class="form-control my-1 border shadow-sm d-none" id="file" type="file" formControlName="image"> -->
             </div>
             <div class="alert alert-danger p-1 text-center mb-0" role="alert"
                 *ngIf="newItem.get('image').errors && newItem.get('image').touched">
@@ -20,9 +19,7 @@
             <select class="form-select border shadow-sm my-1" aria-label="Default select example"
                 formControlName="category">
                 <option selected disabled>Categoria</option>
-                <option value="1">Nike</option>
-                <option value="2">Adidas</option>
-                <option value="3">Puma</option>
+                <option *ngFor="let category of categories; let i = index" [ngValue]="categories[i]">{{category.name}}</option>
             </select>
             <div class="alert alert-danger p-1 text-center mb-0" role="alert"
                 *ngIf="newItem.get('category').errors && newItem.get('category').touched">

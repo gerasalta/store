@@ -10,6 +10,7 @@ import { DatabaseService } from 'src/app/services/database.service';
 export class CreateItemComponent implements OnInit {
 
   errors: any = {}
+  categories: any[] = [];
   spinner: boolean = false;
 
   newItem = new FormGroup({
@@ -24,11 +25,12 @@ export class CreateItemComponent implements OnInit {
   constructor(private db: DatabaseService) { }
 
   ngOnInit(): void {
+    this.getCategories()
   }
 
   creatItem(){
     this.spinner = true
-    this.db.postData(this.newItem.value)
+    this.db.postItem(this.newItem.value)
     .subscribe({
       next: data => {},
       error: err => this.errors = err,
@@ -36,6 +38,13 @@ export class CreateItemComponent implements OnInit {
         this.newItem.reset(),
         this.spinner = false
       }
+    })
+  }
+
+  getCategories(){
+    this.db.getCategories()
+    .subscribe({
+      next: (data:any) => {this.categories = data}
     })
   }
 
