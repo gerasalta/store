@@ -18,8 +18,8 @@ export class CreateItemComponent implements OnInit {
     title: new FormControl('', [Validators.required, Validators.minLength(3)]),
     price: new FormControl('', [Validators.required, Validators.min(1)]),
     stock: new FormControl('', [Validators.required]),
-    category: new FormControl('', [Validators.required]),
-    description: new FormControl('', [])
+    category: new FormControl({}, [Validators.required]),
+    description: new FormControl('')
   })
 
   constructor(private db: DatabaseService) { }

@@ -27,7 +27,7 @@ export class AdminComponent implements OnInit {
   getItems(){
     this.db.getItems()
     .subscribe({
-      next: (data:any) => {this.items = data.docs}
+      next: (data:any) => {this.items = data.docs; console.log(data.docs)}
     })
   }
 
@@ -36,11 +36,12 @@ export class AdminComponent implements OnInit {
   }
 
   deleteItem(){
-    this.db.deleteItem(this.items[this.itemIndex].get('_id').value)
+    this.db.deleteItem(this.items[this.itemIndex]._id)
     .subscribe({
-      next: () => {this.getItems}
+      next: (data) => {console.log(data); this.getItems()}
     })
   }
+  
  // CATEGORY
 
   getCategories(){
