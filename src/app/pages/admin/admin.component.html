@@ -63,10 +63,8 @@
                                 <td class="mobile-hidden td">{{item.price}}</td>
                                 <td class="mobile-hidden td">{{item.stock}}</td>
                                 <td>
-                                    <button class="btn edit-icon td" routerLink="/edit-item"><i
-                                            class="fa-solid fa-pen"></i></button>
-                                    <button class="btn delete-icon td" data-bs-toggle="modal"
-                                        data-bs-target="#deleteItem"><i class="fa-solid fa-trash-can"></i></button>
+                                    <button class="btn edit-icon td" routerLink="/delete-item"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn delete-icon td" data-bs-toggle="modal" data-bs-target="#deleteItem" (click)="getItemIndex(i)"><i class="fa-solid fa-trash-can"></i></button>
                                 </td>
                             </tr>
                             <!-- Delete Item Modal -->
@@ -78,12 +76,11 @@
                                             <i class="fa-solid fa-triangle-exclamation fs-1 text-white"></i>
                                         </div>
                                         <div class="modal-body text-center">
-                                            <p class="m-0">"Air Jordan" sera borrado permanentemente</p>
+                                            <p class="m-0">"{{items[itemIndex].title}}" sera borrado permanentemente</p>
                                             <h3>¿Estas Seguro?</h3>
                                         </div>
                                         <div class="modal-footer text-center d-flex justify-content-center">
-                                            <button type="button" class="btn btn-danger"
-                                                data-bs-dismiss="modal">Borrar</button>
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteItem()">Borrar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +105,7 @@
                     <span class="p-1">{{category.name}}</span>
                     <div>
                         <button class="btn edit-icon" data-bs-toggle="modal" data-bs-target="#editCategory"><i class="fa-solid fa-pen"></i></button>
-                        <button class="btn delete-icon" data-bs-toggle="modal" data-bs-target="#delete" (click)="getIndex(i)"><i class="fa-solid fa-trash-can"></i></button>
+                        <button class="btn delete-icon" data-bs-toggle="modal" data-bs-target="#deleteCategory" (click)="getCategoryIndex(i)"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
                 </div>
             </div>
@@ -116,14 +113,14 @@
     </div>
 </div>
 <!-- Delete Category Modal -->
-<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-danger d-flex justify-content-center">
                 <i class="fa-solid fa-triangle-exclamation fs-1 text-white"></i>
             </div>
             <div class="modal-body text-center">
-                <p class="m-0">La categoria "{{categories[deleteIndex].name}}" se borrará permanentemente</p>
+                <p class="m-0">La categoria "{{categories[categoryIndex].name}}" se borrará permanentemente</p>
                 <h3>¿Estas Seguro?</h3>
             </div>
             <div class="modal-footer text-center d-flex justify-content-center">

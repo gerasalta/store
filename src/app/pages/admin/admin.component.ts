@@ -12,7 +12,8 @@ export class AdminComponent implements OnInit {
   categories: any[] = [];
   items: any [] = [];
   newCategory = new FormControl('')
-  deleteIndex: number = 0;
+  categoryIndex: number = 0;
+  itemIndex: number = 0;
 
   constructor(private db : DatabaseService) { }
 
@@ -21,12 +22,26 @@ export class AdminComponent implements OnInit {
     this.getItems();
   }
 
+  // ITEMS
+
   getItems(){
     this.db.getItems()
     .subscribe({
       next: (data:any) => {this.items = data.docs}
     })
   }
+
+  getItemIndex(index: number){
+    this.itemIndex = index
+  }
+
+  deleteItem(){
+    this.db.deleteItem(this.items[this.itemIndex].get('_id').value)
+    .subscribe({
+      next: () => {this.getItems}
+    })
+  }
+ // CATEGORY
 
   getCategories(){
     this.db.getCategories()
@@ -42,15 +57,14 @@ export class AdminComponent implements OnInit {
     })
   }
 
-  getIndex(index: number){
-    this.deleteIndex = index
+  getCategoryIndex(index: number){
+    this.categoryIndex = index
   }
 
   deleteCategory(){
-    this.db.deleteCategory(this.categories[this.deleteIndex]._id)
+    this.db.deleteCategory(this.categories[this.categoryIndex]._id)
     .subscribe({
       next: () => {this.getCategories()}
     })
   }
-
 }

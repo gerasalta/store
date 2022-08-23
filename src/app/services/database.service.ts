@@ -18,6 +18,10 @@ export class DatabaseService {
     return this.http.get(`${this.url}/products`)
   }
 
+  deleteItem(id: string){
+    return this.http.delete(`${this.url}/products?id=${id}`)
+  }
+
   // CATEGORIES
 
   getCategories(){
