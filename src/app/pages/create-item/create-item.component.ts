@@ -7,6 +7,7 @@ import { DatabaseService } from 'src/app/services/database.service';
   templateUrl: './create-item.component.html',
   styleUrls: ['./create-item.component.scss']
 })
+
 export class CreateItemComponent implements OnInit {
 
   errors: any = {}
@@ -32,7 +33,7 @@ export class CreateItemComponent implements OnInit {
     this.spinner = true
     this.db.postItem(this.newItem.value)
     .subscribe({
-      next: data => {},
+      next: () => {},
       error: err => this.errors = err,
       complete: () => {
         this.newItem.reset(),

@@ -9,13 +9,14 @@ import { DatabaseService } from 'src/app/services/database.service';
 })
 export class AdminComponent implements OnInit {
 
+  keyword: string = '';
   categories: any[] = [];
-  items: any [] = [];
+  items: any[] = [];
   newCategory = new FormControl('')
+  newCategoryName = new FormControl('')
   categoryIndex: number = 0;
   itemIndex: number = 0;
-
-  constructor(private db : DatabaseService) { }
+  constructor(private db: DatabaseService) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -24,48 +25,55 @@ export class AdminComponent implements OnInit {
 
   // ITEMS
 
-  getItems(){
+  getItems() {
     this.db.getItems()
-    .subscribe({
-      next: (data:any) => {this.items = data.docs; console.log(data.docs)}
-    })
+      .subscribe({
+        next: (data: any) => { this.items = data.docs }
+      })
   }
 
-  getItemIndex(index: number){
+  getItemIndex(index: number) {
     this.itemIndex = index
   }
 
-  deleteItem(){
+  deleteItem() {
     this.db.deleteItem(this.items[this.itemIndex]._id)
-    .subscribe({
-      next: (data) => {console.log(data); this.getItems()}
-    })
+      .subscribe({
+        next: (data) => { console.log(data); this.getItems() }
+      })
   }
-  
- // CATEGORY
 
-  getCategories(){
+  // CATEGORY
+
+  getCategories() {
     this.db.getCategories()
-    .subscribe({
-      next: (data: any) => {this.categories = data}
-    })
+      .subscribe({
+        next: (data: any) => { this.categories = data }
+      })
   }
 
-  createCategory(){
+  postCategory() {
     this.db.postCategory(this.newCategory.value)
-    .subscribe({
-      next: data => {this.getCategories(); this.newCategory.reset()}
-    })
+      .subscribe({
+        next: data => { this.getCategories(); this.newCategory.reset() }
+      })
   }
 
-  getCategoryIndex(index: number){
+  getCategoryIndex(index: number) {
     this.categoryIndex = index
   }
 
-  deleteCategory(){
+  deleteCategory() {
     this.db.deleteCategory(this.categories[this.categoryIndex]._id)
-    .subscribe({
-      next: () => {this.getCategories()}
-    })
+      .subscribe({
+        next: () => { this.getCategories(); this.getItems() }
+      })
+  }
+
+  putCategory() {
+    this.db.putCategory(this.categories[this.categoryIndex]._id, this.newCategoryName.value)
+      .subscribe({
+        next: (data: any) => { this.getCategories(); this.getItems() }
+      })
   }
 }

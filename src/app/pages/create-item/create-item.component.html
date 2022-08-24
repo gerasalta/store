@@ -1,14 +1,14 @@
 <div class="container p-4">
     <div class="row item">
         <!-- image  -->
-        <div class="col shadow bg-white p-0 asd">
-            <img class="banner p-0" [src]="newItem.get('image').value">
+        <div class="col-lg-5 shadow bg-white p-0 img-content">
+            <img *ngIf="newItem.get('image').value" class="banner p-0" [src]="newItem.get('image').value">
+            <div *ngIf="!newItem.get('image').value" class="img-none"><i class="fa-solid fa-image"></i></div>
         </div>
         <!-- form group  -->
-        <div class="col shadow bg-white p-3" [formGroup]="newItem">
+        <div class="col-lg-7 shadow bg-white p-3" [formGroup]="newItem">
             <div class="p-0 d-flex">
-                <input type="text" class="form-control my-1 border shadow-sm" placeholder="Url de la imagen"
-                    formControlName="image">
+                <input type="text" class="form-control my-1 border shadow-sm" placeholder="Url de la imagen" formControlName="image">
                 <!-- <label for="file" class="btn btn-primary text-white p-2 my-1 shadow-sm"><i class="fa-solid fa-folder-open"></i></label>
                 <input class="form-control my-1 border shadow-sm d-none" id="file" type="file" formControlName="image"> -->
             </div>
@@ -46,12 +46,11 @@
             <textarea class="form-control border shadow-sm my-1" placeholder="Descripción" rows="3"
                 formControlName="description"></textarea>
             <!-- submit  -->
-            <button class="btn border shadow bg-primary text-white w-100" type="submit" [disabled]="!newItem.valid || spinner" (click)="creatItem()">
+            <button class="btn border shadow bg-primary text-white w-100" data-bs-toggle="modal" data-bs-target="#success"  type="submit" [disabled]="!newItem.valid || spinner" (click)="creatItem()">
                 <div *ngIf="!spinner">Confirmar</div>
                 <div *ngIf="spinner" class="spinner-border text-white spinner" role="status"></div>
             </button>
             <!-- spinner -->
-
         </div>
     </div>
 </div>

@@ -10,6 +10,8 @@ export class DatabaseService {
 
   constructor(private http : HttpClient) { }
 
+  // ITEMS
+
   postItem(newItem: any){
     return this.http.post(`${this.url}/products`, newItem)
   }
@@ -34,6 +36,10 @@ export class DatabaseService {
 
   deleteCategory(id: string){
     return this.http.delete(`${this.url}/categories?id=${id}`)
+  }
+
+  putCategory(id: string, newName: string){
+    return this.http.put(`${this.url}/categories?id=${id}`, {"name": newName, "_id": id})
   }
 
 }

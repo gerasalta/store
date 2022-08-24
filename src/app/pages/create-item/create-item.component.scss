@@ -8,6 +8,18 @@
     object-fit: cover;
 }
 
+.img-none{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30rem;
+    background-color: rgb(243, 243, 243);
+    .fa-solid{
+        opacity: 10%;
+        font-size: 15rem;
+    }
+}
+
 .item{
     margin-top: 3rem;
 }
