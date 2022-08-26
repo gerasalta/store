@@ -12,12 +12,12 @@ export class DatabaseService {
 
   // ITEMS
 
-  postItem(newItem: any){
-    return this.http.post(`${this.url}/products`, newItem)
+  getItems(keyword, category){
+    return this.http.get(`${this.url}/products?keyword=${keyword}&category=${category}`)
   }
 
-  getItems(){
-    return this.http.get(`${this.url}/products`)
+  postItem(newItem: any){
+    return this.http.post(`${this.url}/products`, newItem)
   }
 
   deleteItem(id: string){

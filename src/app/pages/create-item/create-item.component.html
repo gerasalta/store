@@ -18,7 +18,7 @@
             </div>
             <select class="form-select border shadow-sm my-1" aria-label="Default select example"
                 formControlName="category">
-                <option selected disabled>Categoria</option>
+                <option selected disabled value="">Categoria</option>
                 <option *ngFor="let category of categories; let i = index" [ngValue]="categories[i]">{{category.name}}</option>
             </select>
             <div class="alert alert-danger p-1 text-center mb-0" role="alert"

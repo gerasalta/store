@@ -3,8 +3,7 @@
     <div class="col-2 bg-white p-2 shadow mobile-hidden side-left">
         <div class="btn-group flex-column w-100" role="group" aria-label="Basic example">
             <div type="button p-0" class="btn btn-primary text-white my-1" routerLink="/create-item">Crear Item</div>
-            <div type="button p-0" class="btn btn-primary text-white my-1" data-bs-toggle="modal"
-                data-bs-target="#createCatogry">Crear Categoria</div>
+            <div type="button p-0" class="btn btn-primary text-white my-1" data-bs-toggle="modal" data-bs-target="#createCatogry">Crear Categoria</div>
             <!--Create Category / Modal -->
             <div class="modal fade" id="createCatogry" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -33,13 +32,13 @@
                     <!-- search -->
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-6 m-1">
-                            <input class="form-control shadow-sm" type="search" placeholder="Buscar">
+                            <input class="form-control shadow-sm" type="search" placeholder="Buscar" [formControl]="keyword">
                         </div>
                         <!-- List -->
                         <div class="col-lg-2 m-1">
-                            <select class="form-select shadow-sm" aria-label="Default select example">
-                                <option selected>Categorias</option>
-                                <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}
+                            <select class="form-select shadow-sm" aria-label="Default select example" [formControl]="category">
+                                <option selected value="">Todas</option>
+                                <option *ngFor="let category of categories" [ngValue]="category.name">{{category.name}}
                                 </option>
                             </select>
                         </div>

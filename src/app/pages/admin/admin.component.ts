@@ -9,7 +9,8 @@ import { DatabaseService } from 'src/app/services/database.service';
 })
 export class AdminComponent implements OnInit {
 
-  keyword: string = '';
+  category = new FormControl('')
+  keyword = new FormControl('');
   categories: any[] = [];
   items: any[] = [];
   newCategory = new FormControl('')
@@ -21,14 +22,15 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
     this.getCategories();
     this.getItems();
+    this.changeSearchParameters();
   }
 
   // ITEMS
 
   getItems() {
-    this.db.getItems()
+    this.db.getItems(this.keyword.value, this.category.value)
       .subscribe({
-        next: (data: any) => { this.items = data.docs }
+        next: (data: any) => { this.items = data.docs}
       })
   }
 
@@ -76,4 +78,14 @@ export class AdminComponent implements OnInit {
         next: (data: any) => { this.getCategories(); this.getItems() }
       })
   }
+
+  // SEARCH
+
+  changeSearchParameters(){
+    this.keyword.valueChanges
+    .subscribe(()=>{this.getItems()})
+    this.category.valueChanges
+    .subscribe(()=>{this.getItems()})
+  }
+
 }
