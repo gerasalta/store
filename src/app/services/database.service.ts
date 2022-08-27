@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class DatabaseService {
 
-  url: string = 'https://backend-newstore.herokuapp.com/api'
+  url: string = 'https://store-backend.azurewebsites.net/api'
 
   constructor(private http : HttpClient) { }
 
