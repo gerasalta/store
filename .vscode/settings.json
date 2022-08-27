@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/d3c41db9-8e0a-40b3-bee2-088f6f0c5661/microsoft.web/sites/subscriptions/d3c41db9-8e0a-40b3-bee2-088f6f0c5661/resourceGroups/store-src/providers/Microsoft.Web/sites/store-frontend",
-    "appService.deploySubpath": "dist"
-}
